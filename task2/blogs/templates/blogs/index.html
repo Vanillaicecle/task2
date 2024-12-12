@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Blog Posts</h2>
+<ul>
+    {% for post in posts %}
+    <li>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.text|slice:":100" }}...</p>
+        <small>Added on {{ post.date_added|date:"d M Y H:i" }}</small>
+        <div>
+            <a href="{% url 'edit_post' post.id %}">Edit</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'new_post' %}" class="btn btn-primary">Create New Blog</a>
+{% endblock %}
